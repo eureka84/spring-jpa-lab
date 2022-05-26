@@ -1,8 +1,8 @@
-package com.example.demo;
+package com.example.demo.products;
 
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -10,14 +10,14 @@ public class ProductService {
 
   private final ProductRepository productRepository;
 
-  @Transactional
+  @Transactional("productsTransactionManager")
   public void rollback(){
     final Product product = createProduct();
     productRepository.save(product);
     throw new RuntimeException("BOOM");
   }
 
-  @Transactional
+  @Transactional("productsTransactionManager")
   public void commit(){
     final Product product = createProduct();
     productRepository.save(product);

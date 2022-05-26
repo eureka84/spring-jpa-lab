@@ -1,7 +1,6 @@
-package com.example.demo;
+package com.example.demo.stores;
 
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +11,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-public class Product {
+public class Store {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
