@@ -33,10 +33,12 @@ public class ProductsDatasourceConfig {
   @ConfigurationProperties("app.datasource.products.configuration")
   public DataSource productsDataSource(
       @Qualifier("productsDataSourceProperties") DataSourceProperties dataSourceProperties) {
-    return dataSourceProperties
+    final HikariDataSource hikariDataSource = dataSourceProperties
         .initializeDataSourceBuilder()
         .type(HikariDataSource.class)
         .build();
+    hikariDataSource.setAutoCommit(true);
+    return hikariDataSource;
   }
 
   @Bean(name = "productsEntityManagerFactory")

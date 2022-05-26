@@ -34,10 +34,12 @@ public class StoresDatasourceConfig {
   @ConfigurationProperties("app.datasource.stores.configuration")
   public DataSource storesDataSource(
       @Qualifier("storesDataSourceProperties") DataSourceProperties dataSourceProperties) {
-    return dataSourceProperties
+    final HikariDataSource dataSource = dataSourceProperties
         .initializeDataSourceBuilder()
         .type(HikariDataSource.class)
         .build();
+    dataSource.setAutoCommit(true);
+    return dataSource;
   }
 
   @Bean(name = "storesEntityManagerFactory")
