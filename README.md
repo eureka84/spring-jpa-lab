@@ -1,3 +1,3 @@
 # spring-jpa-lab
 
-Some test on transactional behaviour with spring data JPA and multiple datasources
+Some tests on transactional behaviour with spring data JPA and multiple datasources
